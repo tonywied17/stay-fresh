@@ -1,0 +1,77 @@
+JavaScript cont'd
+	DOM: document object model
+		- represents all of the HTML elements in a page in a tree structure
+		- this can be thought of like "the compiled HTML" or "the HTML that is actually shown"
+			- but HTML isn't compiled - just a comparison
+		- the DOM is where you can get elements from in JavaScript to do things with them
+			- the DOM object in JavaScript is called document
+	DOM selection
+		- selecting an element from the DOM can be done in several ways
+		- the easiest way is to get an element by id because IDs are meant to be unique
+			- note that HTML does not actually enforce this - you can have duplicate IDs
+			  but if you do, you will only get the first one when you get it from JavaScript
+			- let element = document.getElementById("idName");
+		- you can also get elements by classname, tagname, etc. this will get an array of all
+		  elements with that class or tag name
+			- let elements = document.getElementsByClassName("className");
+			  elements[0].style = 'color:blue';
+	DOM manipulation
+		- once you have selected elements, you can set their properties
+		- you also can create and remove elements from JavaScript
+		- there are multiple ways of creating elements
+			- you can simply write the HTML for one in the innerHTML of its parent element
+				- element.innerHTML = '<p>This element is new</p>';
+			- but you can also create elements dynamically with specific functions
+				- let p = document.createElement('p');
+				  p.innerHTML = 'This element is new';
+				  p.style = 'color:blue';
+				  p.class = 'className';
+				  parentElement.appendChild(p);
+				- this is the preferred way of creating elements because it gives
+				  more flexibility
+	events
+		- events in the DOM are things like clicks, mouse overs, highlights, etc.
+		- basically if the user does anything at all while the page is open, it is probably
+		  a type of event
+	event listeners
+		these are listeners that wait for certain events to happen, and then execute certain functions when they happen
+		document.getElementById("idName").onclick = funcName; // we don't include parentheses/params with the function because that would just call it immediately
+			- JS passes in an "event" object implicitly as a parameter
+				- this means that we can get info about the event inside of the
+				  function that we set up to happen
+				- so if the click event happens, then inside of the funcName function
+				  we can use the "event" object to get more info
+					- for example, event.target will return the element
+					  that the event happened on (so the element that was clicked)
+		document.getElementById("idName").addEventListener("keydown", checkIfEnter, false);
+			- this is the more "functional" and preferred way of setting event listeners
+	callback functions
+		functions that are passed into other functions as parameters
+		these functions can then be called from within the other function using the parameter name
+			- if i pass a function into a parameter that is named "funcName", then i can
+			  call it by calling funcName();
+		callback functions are often just defined as they're being passed in using arrow notation
+			- if i defined the function before, i could do
+				otherFunc(param, callbackFunc);
+			- but i could use arrow notation instead
+				otherFunc(param, () => { /* code i want */ });
+			- this is similar to how lambdas work in Java
+	template literals
+		where a regular string literal would be in double quotes "string", template literals are in ``
+		this allows us to specify a string in the exact format that we want it to be ultimately
+		document.getElementById("idName").innerHTML = ``;
+		benefits: we don't have to use newline characters (\n), we don't have to concatenate to add variables
+			- with concatenation: element.innerHTML = "Hello, " + name + "!";
+			- with template literal: element.innerHTML = `Hello, ${name}!`;
+				element.innerHTML = `Your total is ${sum * tax}`;
+	event propagation
+		- the way that event listeners handle events for elements that have parents/children with event listeners
+		- two types of event propagation
+			- bubbling: default, the event "bubbles" up from the innermost child element to the outermost parent
+			- capturing: the event starts at the outermost parent and moves down through to the innermost child element
+		- we specify which type to use when adding event listeners
+			- element.addEventListener("event", callbackFunc, true/false)
+			- true is capturing, false is bubbling
+			- when we set up our event listeners using the "on" method, it defaults to bubbling
+				- element.onclick = callbackFunc;
+		- we also can stop propagation by using event.stopPropagation() in the callback function for the event listener

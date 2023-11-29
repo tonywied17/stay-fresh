@@ -1,0 +1,29 @@
+Angular cont'd
+	services
+		services are specified with the @Injectable decorator
+		they are any code that could be reusable and injected as a dependency into other classes (components)
+		dependency injection
+			Angular uses constructor injection
+			constructor (private pokemonService: PokemonService)
+			because we gave the object an access modifier, Angular knows we need this to be an object-level field
+				then when Angular constructs the component, it can inject the service
+			services that are to be injected also must be in the app.module.ts in the providers array
+	http
+		HttpClient object that allows us to send requests
+		must add HttpClientModule to the imports array in the app.module.ts
+		this.http.get('url').pipe( map(resp => resp as Pokemon) );
+			http is our HttpClient object
+			.get sends a GET request (.post would send POST request, etc.)
+			.pipe allows us to return an Observable
+			map allows us to take the JSON data and make it into an object
+		regular JS allows asynchronous calls with Promises
+		in Angular we can use Observables from rxjs
+			- an observable is basically allowing an asynchronous call and giving us a stream of events
+				(sort of like how our plain AJAX calls had the readystatechange events)
+			- to use an Observable (to start the stream), we have to subscribe to it
+			- we get the Observable from a service, then subscribe:
+				this.pokemonService.getPokemonById(this.id).subscribe(
+					resp => {
+						this.pokemon = resp;
+					}
+				);

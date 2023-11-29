@@ -1,0 +1,99 @@
+HTML
+	hypertext markup language
+	used to create the structure of a webpage
+	markup languages are written using tags
+		most tags have an opening and closing tag like so <form> </form>
+		some tags are self-closing which can use either of the following syntax: <img> or <img />
+			- self-closing like <br /> used to be required so some people stick to it, but
+			  it's becoming less common as <br> is easier
+	elements - the pieces of an HTML page created by tags
+		for example, with an <img> tag you create an img or image element.
+	attributes - properties of HTML elements that you can set in the tag
+		for example, <a href="http://google.com">Click</a>, href is an attribute of the a element
+		attribute values always go in double quotes
+	important tags:
+		<html> the tag that everything goes into (the root tag or parent-most tag)
+		<head> the tag that includes metadata such as the page title, character set, external JS or CSS, etc.
+		<script> can use src attribute to reference a JavaScript file and be self-closing, OR can include
+			JavaScript in between the opening and closing tags.
+		<link> paired with rel="stylesheet", the href attribute allows you to set a CSS file.
+		<body> the tag where everything that the user will see goes - the actual page structure
+		<a> the "anchor" tag; essentially a link. the href attribute allows you to set a URL
+		<img> the image tag; the src attribute allows you to set a URL for the image to be shown. self-closing
+		<h1> a heading tag; used for headings on the page. 1 is the largest.
+		<p> a paragraph tag
+		<div> "divider" a block element.
+		<span> a line element; usually used for styling small pieces of text.
+		<br> a line break (basically a new line), self-closing
+		<form> a form tag for grouping together input elements with a submit button
+		<button> the basic button tag; type attribute can set if it is a submit button or a regular one.
+		<input> creates an input element; type attribute can set types like text, number, date, password, etc.
+		<select> paired with <option> tags creates a drop-down input element
+		<ul> unordered list; list items are marked with bullet points
+		<ol> ordered list; list items are marked with numbers
+		<li> list item; goes within <ul> or <ol> tags
+		<table> parent tag of a table
+		<th> table header row; should be the first row in a table
+		<tr> regular table row
+		<td> table data; the items that go inside of a table row
+	semantic tags:
+		tags that are functionally the same as divs, but better for screen readers/accessibility.
+		<main>, <article>, <header>, <footer>, <section>, <nav>, etc.
+
+CSS
+	cascading style sheets
+	brings the looks/styling to an HTML page
+	made up of selectors and properties
+	selectors are a way of selecting/reference HTML elements
+		- basic selector is just the name of a tag like "div" which would style all divs
+		- other selectors allow you to target more specifically
+			- child selector: "div > p" is any paragraph that is a direct child of a div
+			- contextual selector: "div p" is any paragraph in a div, even if there are some tags in between
+			- class selector: ".classname" is any element with "classname" as a class
+			- id selector: "#idname" is any element with "idname" as an id
+				- class and id are attributes on any element, like <p class="classname"></p>
+			- there are more that allow you to get even more specific
+	properties are characteristics of an element that you can define the style for
+		- setting these follows a key-value pair syntax
+		- some examples include:
+			background-color
+			border-width
+			border-style
+			color (this is the font color)
+			overflow
+			flex
+			etc.
+		- CSS has changed a lot over the years so there can often be a lot of different ways to
+		  achieve certain things with different properties
+	syntax:
+		selector {
+			property: value;
+			property1: value;
+		}
+	"cascading"?
+		- CSS is "cascading" because it applies the styling in order of the CSS written.
+		- basically, this means that if you have some CSS somewhere that affects a certain element,
+		  but then later in your CSS you have more that affects that same element, it applies them
+		  in order so that whatever comes later overwrites the old CSS.
+	working with colors
+		- there are a couple of different ways you can set colors (color, background-color, border-color, etc.)
+		- name
+			- there are lots of web colors that are named, like red, blue, yellow, etc. and
+			  even some fancier ones like salmon, papayawhip, slateblue, chartreuse, etc.
+		- rgb
+			- this allows you to set the red, green, and blue values from 0-255
+				- 0 is none of that color and 255 is the full amount
+			- rgb(0,0,0) is black and rgb(255,255,255) is white
+			- rgb(10, 255, 100)
+		- rgba
+			- the same as rgb, but the "a" (alpha) value allows you set transparency from 0.0-1.0
+				- 0.0 is fully transparent and 1.0 is not transparent at all
+			- rgba(10,255,100,0.5)
+		- hexcode
+			- allows you to set the red, green, and blue values from 00-FF
+				- 00 is none of that color and FF is the full amount
+			- #000000 is black and #FFFFFF is white
+			- #48FF7A
+			- yizzle.com/whatthehex/ is a fun game to guess colors based on hex codes
+	being good at CSS mostly comes with practice and looking things up
+	

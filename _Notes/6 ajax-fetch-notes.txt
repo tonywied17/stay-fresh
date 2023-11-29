@@ -1,0 +1,49 @@
+AJAX
+	- asynchronous javascript and XML
+	- library that allows us to send HTTP requests & receive HTTP responses 
+	  and have partial page reload
+		- allows us to make asynchronous calls, meaning the rest of the 
+		  code can still execute while waiting for calls
+			- if we send an HTTP request, event listeners can still 
+			  run their callback functions while waiting for the
+			  HTTP response to come back, etc.
+	4 steps in making an AJAX call:
+		1. create an XMLHttpRequest object
+		2. set a callback function to the readystatechange event on that 
+		   object
+		3. open the request (this is where we set the type (GET, POST, 
+		   etc.) and the URL to send the request to)
+		4. send the request
+	what we do in the callback function for onreadystatechange
+		- check the ready state to see if we've gotten a response back
+		- check the HTTP status code to see if our request was successful
+		- handling the information we got back
+	ready states
+		0: UNSENT
+		1: OPENED
+		2: HEADERS RECEIVED
+		3: LOADING
+		4: DONE
+Fetch API
+	- an API in javascript that allows us to send HTTP requests & receive 
+	  HTTP responses like AJAX
+	- introduced in ES6
+	- takes a little less code than AJAX
+	- fetch function returns a response as a promise
+		- fetch(uri) // sends GET request
+		- fetch(uri, {method: 'PUT', body: JSON.stringify(obj)}); // adding other 
+		  // information for the request
+			- other information can be put in the second parameter 
+			  like headers, etc.
+	- can be used with async/await in functions
+		- introduced in ES7
+		- async is used on a function to specify that it will either 
+		  return a promise or is making asynchronous calls
+		- await can be used in an async function when making asynchronous 
+		  calls to wait for the promise to be resolved
+			- async function sendRequest() {
+				...
+				let response = await fetch(uri);
+				if (response.status === 200)
+					let obj = await response.json();
+			  }

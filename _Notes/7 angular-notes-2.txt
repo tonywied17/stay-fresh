@@ -1,0 +1,31 @@
+Angular cont'd
+	data binding
+		a way of making communication easier between the HTML/DOM and the TypeScript
+			- typically we would be using lots of document.getElementById()
+			- allows you to put these connections directly into the HTML (less JS!)
+		4 main types of data binding
+			- property binding []
+				- in the .ts file: let colorVar = blue;
+				- in the .html file: <div [style]="'color:'+colorVar"></div>
+				- goes from TS -> HTML
+			- interpolation {{ }}
+				- in the .ts file: let username = "sierra";
+				- in the .html file: <p>{{ username }}</p>
+				- goes from TS -> HTML
+			- event binding ()
+				- in the .ts file: function doClick() { window.alert('thing!'); }
+				- in the .html file: <button type="button" (click)="doClick()">Submit</button>
+				- goes from HTML -> TS
+			- two-way binding [( )]
+				- in the .ts file: let usernameInput = "Enter Username";
+				- in the .html file: <input name="user" [(ngModel)]="usernameInput">
+				- goes both ways HTML <-> TS
+	pipes
+		<ng-container *ngFor="let sprite of sprites | keyvalue">
+			- keyvalue is a predefined pipe
+			- date, currency, upper case, lower case, percent, title case are other predefined pipes
+		for formatting or filtering
+		implement the transform method with a value and output
+			any parameters can be added as well
+			transform(value: Move[], searchText: string): Move[] { }
+			<li *ngFor="let move of moves | moveFilter:filterText">

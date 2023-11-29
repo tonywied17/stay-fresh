@@ -1,0 +1,62 @@
+AWS
+	amazon web services - cloud platform
+	why use the cloud rather than on-premises services?
+		- maintenance for on-premise: need to keep them cool, keep them running, etc.
+		- on-premise may also require physical security which adds costs
+		- it's hard to accommodate for changes in demand with on-premise
+			- if you have more traffic for one part of the year, you may need to buy/rent more servers just for part of the year
+			  or even just have extra servers that you then need to be paying for
+		- with the cloud, they have tons of servers and can only charge you for what you're actually using
+		- they also handle all physical security, maintenance, etc. and make it easier to prevent downtime
+	AWS has regions and availability zones across the globe
+		- this allows you to distribute your application for more reliability and lower latency
+		- regions
+			- physically isolated from one another
+			- can include multiple availability zones
+			- example: us-east-2 (ohio)
+		- availability zones
+			- data centers within regions
+			- can add redundancy within a region
+			- example: us-east-2b
+	AWS, like other cloud platforms (GCP, Azure, etc) provides a wide variety of services like:
+		- compute servers (EC2)
+		- event-driven/serverless (Lambda)
+		- managed databases (RDS)
+		- identity & access management (IAM)
+		- object storage (S3)
+		- container/orchestration (ECS/EKS)
+		- devops (code pipeline, code deploy, etc)
+		- monitoring (cloudwatch)
+		- and MANY others
+	AWS offers a free tier for one year where you can use certain services with certain restrictions for free
+AWS EC2
+	EC2: elastic cloud compute
+		- basically a virtual machine that you can connect to
+		- these can be used for many different purposes with different instance types and AMIs
+		- instance types may be things like:
+			- compute optimized (C and Hpc instances)
+			- storage optimized (D, H, Inf instances)
+			- accelerated computing (DL, F, G, Inf, P, VT instances)
+			- general purpose (M, Mac, T instances)
+				- for training, we'll use the free t2.micro - a very small, general purpose T instance
+			- memory optimized (R, U, X, Z instances)
+	AMI: amazon machine image
+		- this is basically a template for your EC2 instance that includes all of the software that will be on it
+		- for example, this may just be a basic linux OS, or it could be more involved with things like photoshop, etc.
+		- this is necessary for launching your instance
+	EBS: elastic block storage
+		- this is the storage for an EC2 instance
+		- EBS volumes can be attached to instances like a physical hard drive
+		- you can take snapshots of the state of an EBS and save it to S3
+			- this essentially acts as a backup
+		- by default, a t2.micro EC2 instance will have 8GB on an EBS volume
+			- you can get up to 30GB with free tier
+AWS Security Groups
+	security groups are a way of restricting access to an EC2 instance (including an RDS)
+	they allow you to block traffic to/from certain IP addresses
+	this allows you to set who can access an instance via different protocols
+		- not only can you set up permissions for people, you also need to set up permissions for different AWS resources.
+		  for example, an EC2 cannot access an RDS by default - the EC2's IP address needs to be added to the RDS' security
+		  group inbound rules in order to do so. this means that if you deploy a web application to an EC2 that needs RDS
+		  access, it needs to be in the RDS inbound rules!
+	changes to security group rules update automatically - no need to restart your instance

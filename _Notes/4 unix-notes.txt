@@ -1,0 +1,43 @@
+Unix
+	a family of operating systems. linux and OS X (macOS) are built on unix
+	one of the important features of unix is the command-line shell (terminal) for using the OS
+		- in linux, this is Bash (bourne again shell)
+	about shell commands
+		- maneuvering the file system
+			- ./ or . references the current directory
+			- ../ or .. reference the parent directory
+			- ~ references the home directory, usually for the current user
+			- / references the root directory
+		- flags
+			- flags are commonly used to specify different parameters for a command
+				- they can mean something on their own or precede a value that you want to set
+			- for example, in the following AWS CLI command, "name" and "query" are full flags, marked by "--", with values after
+				aws ssm get-parameter --name 'DB_USER' --query 'Parameter.Value'
+			- and in the following NPM command, "g" is a short-hand flag, marked by "-", with values for it (it just means global)
+				npm install -g @angular/cli
+			- shorthand flags can also be stacked together, like in these examples:
+				- rm -rf pet-app/
+					- remove the petapp folder: recursive (r) and force (f)
+				- tar -zxvf tomcat.tar.gz
+					- run the compressed tomcat tarball: unzip (z), extract (x), verbose (v), file (f)
+		- some important/useful commands
+			- man: manual. will give you the manual for a particular command so you know how to use it. (e.g. man cd)
+			- cd: change directory
+			- ls: list, will list files/directories in the current directory. add the -a flag (all) to see hidden files as well
+			- mkdir: make a new folder (directory) in the current directory (e.g. mkdir mynewfolder)
+			- touch: make a new, empty file of any kind (e.g. touch newtxtfile.txt)
+			- pwd: print working directory - will print the full path of your current directory
+			- su: substitute/switch user
+			- sudo: run a command as the superuser (root/admin user) (e.g. sudo yum update)
+			- echo: print something you specify to the console
+			- cat: print a file to the console
+			- >: allows you to redirect output to a file, like echo $DB_USER > myfile.txt
+			- >>: same as > except it appends output to the end of the file instead of overwriting the whole file
+			- grep: print lines of a file that match a particular pattern (regex by default), like grep mysearchtext myfile.txt
+			- cp: copy a file/directory to a specified location
+			- mv: move a file/directory to a specified location. this can also be used for renaming files/directories
+			- rm: remove a file/directory
+				- note: cp, mv, and rm must all use the -r (--recursive) flag to be used on directories
+	package managers
+		- used to install software on unix systems
+		- the Amazon Linux AMI that we use on our EC2 instances (the free tier AMI) uses "yum", yellowdog updater

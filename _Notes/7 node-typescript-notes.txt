@@ -1,0 +1,61 @@
+Node
+	an environment for javascript to run outside of browsers (e.g. server-side javascript)
+		- commands start with the "node" keyword
+	includes NPM (node package manager)
+		- manages dependencies for javascript projects
+		- includes many javascript libraries/frameworks like typescript, react, angular, etc.
+		  and even things like jquery, bootstrap, etc.
+		- commands start with "npm" keyword
+			- npm install - allows you to install all dependencies from a config file or 
+			  a specific one (i.e. npm install @angular/cli)
+			- npm update - updates all of the dependencies from a config file
+		- uses a config file called package.json (written in JSON)
+		- holds the dependencies in the node_modules folder - never copy/paste this or push it
+		  to a git repository!
+			- either delete it before copy/pasting or use a .gitignore file to make sure
+			  that it doesn't get pushed
+			- this is because it is extremely large and there is no reason to move it
+			  anywhere because if you have it somewhere else you can always use npm install
+			  to re-install the modules based on the package.json
+TypeScript
+	- made by Microsoft
+	- is a superset of JavaScript
+		- all JS is valid TS
+		- anytime you're writing TS, you can use anything that you would use in JS
+	- transpiled to JS
+	- features
+		- static typing
+		- classes & interfaces
+		- generics
+		- access modifiers
+		- constructors
+		- import/export (?)
+	- advantages & disadvantages
+		- advantages: more object-oriented, easier to read, easier to maintain, more modular
+		- disadvantages: have to learn TS, has to be transpiled before deployment, doesn't actually stop you from anything
+	- npm install -g typescript
+		- installing it from NPM using Node
+	- access modifiers in TS
+		- public, private, and protected (only self & children)
+		- any parameter in a constructor that is given an access modifier is declared as a field (object-level variable)
+	- types
+		- all JS types (number, string, etc)
+		- Enum
+		- void
+		- never
+		- any (dynamic typing)
+		- tuple
+		- casting types
+			- casting objects: <HTMLInputElement>
+			- casting primitives: Number(value);
+	- non-access modifiers
+		- static
+		- readonly (can be given an initial value, then cannot be changed)
+	- tsc main.ts
+		- node command that transpiles typescript to javascript
+		- by default, it uses ES3
+		- tsc --target 'es6' main.ts
+			- this allows us to specify what version of javascript to use
+		- tsc --init
+			- creates a tsconfig.json file so you can specify the default target verson
+	- when you have a class that is importing another class, it transpiles that class automatically with the other

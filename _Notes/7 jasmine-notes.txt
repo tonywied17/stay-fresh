@@ -1,0 +1,48 @@
+Jasmine
+	- a BDD (behavior-driven development) unit testing framework for JavaScript
+	- made by Pivotal Labs, open source
+	- works with plain JS, Node.js, Angular/TypeScript, Python, Ruby
+	- main keywords/setup
+		- describe('Name/description of test suite', () => {
+			it('should do something', () => {
+				expect(actualValue).toBe(expectedValue);
+				expect(actualValue.toBeTruthy();
+				expect(actualValue.toBeFalsy();
+				expect(actualValue).toEqual(expectedValue);
+				expect(actualValue).not.toBe(notExpectedValue);
+			}
+		});
+		- within your test suite (describe function), you can also have
+			- beforeEach, beforeAll, afterEach, afterAll
+			- like so:
+			beforeEach(() => { //something to happen before each spec });
+	- jasmine files are spec.ts or spec.js
+		- all syntax rules of ts/js apply in jasmine tests (i.e. variable scopes, etc.)
+	- using Jasmine with Angular
+		- the jasmine test files (spec.ts) automatically generated for components, classes, and services include:
+			- the bare minimum necessary for setting up the environment for testing the entity
+				- creates test module to fill in for app module
+				- creates a standalone version of the component being tested (including html/css/ts)
+			- one spec that tests whether the entity was successfully created
+		- these suites typically won't pass if you've already written your components out, because they are missing:
+			- necessary imports that would normally be in the app module imports array but are missing from the test module
+			- the schemas array with CUSTOM_ELEMENTS_SCHEMA because jasmine doesn't know about Angular directives
+			- components in the declarations array that may be nested within the current component
+		- remember that we are unit testing, so if you want to unit test methods, you'd have to mock dependencies
+			- so, when testing components that use services, you'd need a mock service
+			- you can simply make these as objects with functions that are in the "describe" suite scope
+			- let catServiceMock = {
+				'getAvailableCats': () => { return new Array<Cat>(); },
+				'adoptCat': () => {
+					let cat: Cat = new Cat();
+					cat.status.id = 2;
+					return cat;
+				}
+			  }
+	- if you want to only run specific tests:
+		- putting "fdescribe" rather than "describe" will run that test suite and only others that also have the f
+		- putting "fit" rather than "it" will run that test and only others that have the f
+		- the "f" stands for "focus"
+		- using "x" does the opposite: runs all tests except those with x
+			- xdescribe or xit
+			- these specs will be marked as "pending" in the test results

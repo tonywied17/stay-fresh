@@ -1,0 +1,12 @@
+Angular cont'd
+	routing
+		allows us to swap components dynamically based on the URL path
+		app-routing.module.ts
+			contains the path mappings
+		<router-outlet></router-outlet>
+			specifies WHERE the routed component will show up
+		route guards
+			ng g guard guard-name
+			allow you to set up logic that prevents certain routes from
+				being accessed if a certain condition is not met
+			for example, an admin guard could restrict the /admin route

@@ -1,0 +1,82 @@
+JavaScript
+	a scripting language built for client-side web applications
+		- also used now on servers, databases, etc.
+		- scripting language: a language that automates tasks, and is interpreted, not compiled
+	supported by all modern browsers, removing most cons of client-side rendering
+		(these cons would be worrying about whether the client can run code, worrying about different environments, etc)
+	Ecma manages the standards specifications for JavaScript
+		these standards versions are called ECMAScript
+		we use *at least* ES6 (ES2015) because it has many useful features and is well-supported by browsers
+			- we will use some ES7 features as well
+	high-level, multi-paradigm (functional, object-oriented, etc.)
+	syntax is mostly very similar to Java
+		// line comments
+		/* block comments */
+		semi-colon injection (it will put semi-colons at the end of statements implicitly where it feels it is appropriate)
+			- sometimes this will put semi-colons in places you don't really want them, so it's good to be explicit and 
+			  pay attention to when you're putting things on separate lines
+	dynamically-typed
+		this means that variables don't have to be declared with any specific type, and their type can change dynamically
+	types
+		"primitive" types
+			- number
+			- boolean
+			- string
+			- null
+			- undefined
+			- symbol
+		"object" types
+			- objects
+			- arrays
+			- functions
+		objects and arrays are both stored as key-value pairs
+			keys are stored as strings (even array indices)
+			JSON: JavaScript Object Notation
+				- the format that objects are written in in JS
+				- there are JSON mappers for most other languages so they can receive/send JSON objects
+				- {
+					"id":5,
+					"name":"Fluffy",
+					"age":6
+				  }
+		truthy & falsey
+			any type in JS will evaluate to true or false
+			(a truthy value evaluates to true, a falsey value evaluates to false)
+			falsey values:
+				- empty strings
+				- NaN
+				- 0
+				- null
+				- false
+				- undefined
+		== vs. ===
+			== checking whether the value is equal (performs type coercion)
+			1 == "1" // true
+			=== checking whether the value and type are equal
+			1 === "1" // false
+	scopes
+		global scope: a variable is global scope when it doesn't have a label at declaration
+			i = 0; // no matter WHERE this is declared, it is global (it is accessible from anywhere in the script)
+			when using strict mode, ("use strict";) you cannot create variables this way
+		function scope: a variable is function scope when it is declared with "var"
+			var i = 0; // this is scoped to whatever function it is in, even if it is declared within a smaller block
+			function scoped variables are "hoisted" meaning they are declared at the top of their scope
+				(regardless of where you actually declare them), but not defined until the script gets to your declaration/definition
+			because of hoisting causing unexpected behavior at times, it is generally considered bad practice
+		block scope: a variable is block scope when it is declared with "let" or "const"
+			let i = 0; // this is scoped to whatever block it is declared in
+			const i = 0; // this is a block scoped constant
+			hoisting does not occur for block-scoped variables so they are good practice to use anywhere
+			specifying this scope is new to ES6
+	for each loops
+		where other loops are essentially the same as Java, for-each loops are different
+		instead of for (Object obj : collection) we have two options
+		for (obj of arr) { }
+			"for-of" this loop allows you to iterate through the VALUES in an array (or a string)
+		for (value in obj) { }
+			"for-in" this loop allows you to iterate through the KEYS in an object (any kind)
+	functions
+		- very similar to methods - methods are just functions that are in classes, but we
+		  don't typically use classes in JavaScript
+		function funcName () { /* code here */ } // defining the function
+		funcName(); // calling the function

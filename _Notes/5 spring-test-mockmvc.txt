@@ -1,0 +1,33 @@
+Spring Test
+	spring test includes other libraries/frameworks including JUnit 5 and Mockito
+	the spring test module is included by default in Spring Boot
+	it adds the ability to utilize the IOC container with your testing
+		- you can autowire the classes you're testing
+		- spring will inject mocks in place of the dependencies for those classes
+			- @MockBean annotation, similar to @Mock in standard Mockito,
+			  except it adds the mock to the IOC container so that it can
+			  be injected rather than a real implementation
+		- @SpringBootTest(classes=MainClass.class)
+			- allows Spring Boot to make an instance of the IOC container
+			  for testing purposes
+MockMvc
+	allows you to write small integration tests or pseudo-unit tests
+	part of Spring Test w/ Spring Web (org.springframework.test.web)
+	test your Spring MVC endpoints
+		- allows you to instantiate either a bare minimum Spring MVC architecture
+		  for the purpose of only testing specific controllers, or an entire
+		  architecture as normal with all pieces (DispatcherServlet, etc.)
+			- mockMvc = MockMvcBuilders.standaloneSetup(myController).build();
+			- mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
+		- use the "perform" method to send HTTP requests to specified endpoints
+			- this method allows you to set the request (method, URI, headers, body, etc)
+			- on this method, we can chain different expectations about the response
+			- then, we must finish with andReturn() if we want the response directly
+	mockMvc.perform(get("/pets"))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+		.andExpect(content().json(expectedJsonString))
+		.andReturn();
+	mockMvc.perform(post("/pets").content(petsJsonString).contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isCreated())
+		.andReturn();
